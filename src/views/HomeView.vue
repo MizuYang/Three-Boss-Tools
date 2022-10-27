@@ -1,33 +1,63 @@
 <template>
-  <div class="container center-center">
-    <h1></h1>
-    <div class="position-relative text-center border mb-5 py-4">
-      <span class="progress-color-1" ref="progress-1"></span>
-      <h2 class="h1 mb-3">(1) 第一階段</h2>
-      <div class="d-flex align-items-center justify-content-center">
-        <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['1']?showTime['1']:' 2 分 40 秒 '  }}</h3>
-        <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(1)" :disabled="time['1']<160000">開始</button>
-        <button type="button" class="btn btn-secondary p-lg" @click="resetTime(1)" :disabled="time['1']===160000">重置</button>
+  <div class="d-flex mt-4">
+    <div class="container">
+      <div class="position-relative text-center border mb-5 py-4">
+        <span class="progress-color-1" ref="progress-1"></span>
+        <input type="text" placeholder="輸入角色名稱" class="my-2 ps-1">
+        <h2 class="h1 mb-3">(1) 第一階段</h2>
+        <div class="d-flex align-items-center justify-content-center">
+          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['1']?showTime['1']:' 2 分 40 秒 '  }}</h3>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(1)" :disabled="time['1']<160000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(1)" :disabled="time['1']===160000">重置</button>
+        </div>
+      </div>
+      <div class="position-relative text-center border mb-5 py-5">
+        <span class="progress-color-2" ref="progress-2"></span>
+        <h2 class="h1 mb-3">(2) 第二階段</h2>
+        <div class="d-flex align-items-center justify-content-center">
+          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['2']?showTime['2']:' 1 分 20 秒 '  }}</h3>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(2)" :disabled="time['2']<80000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(2)" :disabled="time['2']===80000">重置</button>
+        </div>
+      </div>
+      <div class="position-relative text-center border py-5">
+        <span class="progress-color-3" ref="progress-3"></span>
+        <h2 class="h1 mb-3">(3) 第三階段</h2>
+        <div class="d-flex align-items-center justify-content-center">
+          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['3']?showTime['3']:' 2 分 40 秒 '  }}</h3>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(3)" :disabled="time['3']<160000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(3)" :disabled="time['3']===160000">重置</button>
+        </div>
       </div>
     </div>
-
-    <div class="position-relative text-center border mb-5 py-5">
-      <span class="progress-color-2" ref="progress-2"></span>
-      <h2 class="h1 mb-3">(2) 第二階段</h2>
-      <div class="d-flex align-items-center justify-content-center">
-        <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['2']?showTime['2']:' 1 分 20 秒 '  }}</h3>
-        <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(2)" :disabled="time['2']<80000">開始</button>
-        <button type="button" class="btn btn-secondary p-lg" @click="resetTime(2)" :disabled="time['2']===80000">重置</button>
+    <div class="container">
+      <div class="position-relative text-center border mb-5 py-4">
+        <span class="progress-color-1" ref="progress-4"></span>
+        <input type="text" placeholder="輸入角色名稱" class="my-2 ps-1">
+        <h2 class="h1 mb-3">(4) 第一階段</h2>
+        <div class="d-flex align-items-center justify-content-center">
+          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['4']?showTime['4']:' 2 分 40 秒 '  }}</h3>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(4)" :disabled="time['4']<160000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(4)" :disabled="time['4']===160000">重置</button>
+        </div>
       </div>
-    </div>
-
-    <div class="position-relative text-center border py-5">
-      <span class="progress-color-3" ref="progress-3"></span>
-      <h2 class="h1 mb-3">(3) 第三階段</h2>
-      <div class="d-flex align-items-center justify-content-center">
-        <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['3']?showTime['3']:' 2 分 40 秒 '  }}</h3>
-        <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(3)" :disabled="time['3']<160000">開始</button>
-        <button type="button" class="btn btn-secondary p-lg" @click="resetTime(3)" :disabled="time['3']===160000">重置</button>
+      <div class="position-relative text-center border mb-5 py-5">
+        <span class="progress-color-2" ref="progress-5"></span>
+        <h2 class="h1 mb-3">(5) 第二階段</h2>
+        <div class="d-flex align-items-center justify-content-center">
+          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['5']?showTime['5']:' 1 分 20 秒 '  }}</h3>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(5)" :disabled="time['5']<80000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(5)" :disabled="time['5']===80000">重置</button>
+        </div>
+      </div>
+      <div class="position-relative text-center border py-5">
+        <span class="progress-color-3" ref="progress-6"></span>
+        <h2 class="h1 mb-3">(6) 第三階段</h2>
+        <div class="d-flex align-items-center justify-content-center">
+          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['6']?showTime['6']:' 2 分 40 秒 '  }}</h3>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(6)" :disabled="time['6']<160000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(6)" :disabled="time['6']===160000">重置</button>
+        </div>
       </div>
     </div>
   </div>
@@ -44,20 +74,21 @@ export default {
       originTime: {
         1: 160000,
         2: 80000,
-        3: 160000
+        3: 160000,
+        4: 160000,
+        5: 80000,
+        6: 160000
       },
       time: {
         1: 160000,
         2: 80000,
-        3: 160000
+        3: 160000,
+        4: 160000,
+        5: 80000,
+        6: 160000
       },
       showTime: {},
-      timeStamp: {
-        1: '',
-        2: '',
-        3: ''
-
-      }
+      timeStamp: {}
     }
   },
 
