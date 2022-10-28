@@ -70,4 +70,7 @@
 <img src="./src/assets/畫面示意圖.png" alt="操作介面示意圖">
 
 
+<img src="./src/assets/王出場階段示意圖.png" alt="王出場階段示意圖">
+
+
 <img src="./src/assets/三王密碼示意圖.png" alt="操作介面示意圖(開啟三王密碼視窗)">
