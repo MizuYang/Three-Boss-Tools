@@ -10,12 +10,17 @@
       <!-- 選擇人物名稱區塊 -->
       <header class="border mb-3 p-2">
         <!-- 人物名稱 -->
-        <h3 class="text-center">{{ currentPlayer['1']==='選擇當前角色名稱'? '請選擇人物':currentPlayer['1'] }}</h3>
+        <div class="d-flex align-items-center justify-content-center my-3">
+          <h3 class="text-center mb-0 me-3">{{ currentPlayer['1']==='選擇當前角色名稱'? '請選擇人物':currentPlayer['1'] }}
+          </h3>
+          <button type="button" class="btn btn-danger btn-sm" v-if="currentPlayer['1']!=='選擇當前角色名稱'" @click="deletePlayerName(1)">刪</button>
+        </div>
+
         <!-- 新增人物名稱輸入框 -->
         <div class="d-flex align-items-center justify-content-center" v-if="selectPlayerShow['showInput1']">
           <input type="text" placeholder="輸入角色名稱" class="my-2 me-1 ps-1 w-25" v-model="playerInput['1']">
           <button class="btn btn-primary btn-sm me-1" type="button" @click="savePlayerName(1)">儲存</button>
-          <button class="btn btn-success btn-sm" type="button" @click="selectPlayerShow['showInput1']=false" v-if="selectPlayerShow['showInput1']&&localPlayerName.length>0">切換常用人物</button>
+          <button class="btn btn-success btn-sm" type="button" @click="selectPlayerShow['showInput1']=false" v-if="selectPlayerShow['showInput1']&&localPlayerName.length>0">常用人物</button>
         </div>
 
         <!-- 常用人物下拉選擇 -->
@@ -24,7 +29,7 @@
             <option selected disabled>選擇當前角色名稱</option>
             <option :value="playerName" v-for="playerName in localPlayerName" :key="playerName">{{ playerName }}</option>
           </select>
-          <button class="btn btn-success btn-sm me-3" type="button" @click="selectPlayerShow.showInput1=true">切換新增人物</button>
+          <button class="btn btn-success btn-sm me-3" type="button" @click="selectPlayerShow.showInput1=true">新增人物</button>
         </div>
       </header>
 
@@ -38,7 +43,7 @@
           <button type="button" class="btn btn-secondary p-lg" @click="resetTime(1)" :disabled="time['1']===160000">重置</button>
         </div>
       </section>
-      <section class="position-relative text-center border mb-3 py-5">
+      <section class="position-relative text-center border mb-3 py-3">
         <span class="progress-color-2" ref="progress-2"></span>
         <h2 class="h1 mb-3">(2) 第二階段</h2>
         <div class="d-flex align-items-center justify-content-center">
@@ -47,7 +52,7 @@
           <button type="button" class="btn btn-secondary p-lg" @click="resetTime(2)" :disabled="time['2']===80000">重置</button>
         </div>
       </section>
-      <section class="position-relative text-center border py-5">
+      <section class="position-relative text-center border py-3">
         <span class="progress-color-3" ref="progress-3"></span>
         <h2 class="h1 mb-3">(3) 第三階段</h2>
         <div class="d-flex align-items-center justify-content-center">
@@ -62,12 +67,16 @@
       <!-- 選擇人物名稱區塊 -->
       <header class="border mb-3 p-2">
         <!-- 人物名稱 -->
-        <h3 class="text-center">{{ currentPlayer['2']==='選擇當前角色名稱'? '請選擇人物':currentPlayer['2'] }}</h3>
+        <div class="d-flex align-items-center justify-content-center my-3">
+          <h3 class="text-center mb-0 me-3">{{ currentPlayer['2']==='選擇當前角色名稱'? '請選擇人物':currentPlayer['2'] }}</h3>
+          <button type="button" class="btn btn-danger btn-sm" v-if="currentPlayer['2']!=='選擇當前角色名稱'">刪</button>
+        </div>
+
         <!-- 新增人物名稱輸入框 -->
         <div class="d-flex align-items-center justify-content-center" v-if="selectPlayerShow['showInput2']">
           <input type="text" placeholder="輸入角色名稱" class="my-2 me-1 ps-1 w-25" v-model="playerInput['2']">
           <button class="btn btn-primary btn-sm me-1" type="button" @click="savePlayerName(2)">儲存</button>
-          <button class="btn btn-success btn-sm" type="button" @click="selectPlayerShow['showInput2']=false" v-if="selectPlayerShow['showInput2']&&localPlayerName.length>0">切換常用人物</button>
+          <button class="btn btn-success btn-sm" type="button" @click="selectPlayerShow['showInput2']=false" v-if="selectPlayerShow['showInput2']&&localPlayerName.length>0">常用人物</button>
         </div>
 
         <!-- 常用人物下拉選擇 -->
@@ -76,7 +85,7 @@
             <option selected disabled>選擇當前角色名稱</option>
             <option :value="playerName" v-for="playerName in localPlayerName" :key="playerName">{{ playerName }}</option>
           </select>
-          <button class="btn btn-success btn-sm me-3" type="button" @click="selectPlayerShow.showInput2=true">切換新增人物</button>
+          <button class="btn btn-success btn-sm me-3" type="button" @click="selectPlayerShow.showInput2=true">新增人物</button>
         </div>
       </header>
 
@@ -90,7 +99,7 @@
           <button type="button" class="btn btn-secondary p-lg" @click="resetTime(4)" :disabled="time['4']===160000">重置</button>
         </div>
       </section>
-      <section class="position-relative text-center border mb-3 py-5">
+      <section class="position-relative text-center border mb-3 py-3">
         <span class="progress-color-2" ref="progress-5"></span>
         <h2 class="h1 mb-3">(2) 第二階段</h2>
         <div class="d-flex align-items-center justify-content-center">
@@ -99,7 +108,7 @@
           <button type="button" class="btn btn-secondary p-lg" @click="resetTime(5)" :disabled="time['5']===80000">重置</button>
         </div>
       </section>
-      <section class="position-relative text-center border py-5">
+      <section class="position-relative text-center border py-3">
         <span class="progress-color-3" ref="progress-6"></span>
         <h2 class="h1 mb-3">(3) 第三階段</h2>
         <div class="d-flex align-items-center justify-content-center">
@@ -233,7 +242,28 @@ export default {
       //* 回傳回去 localStorage
       localStorage.setItem('player1', JSON.stringify(this.localPlayerName))
       this.playerInput[count] = ''
-      console.log('新增成功!!')
+    },
+    //* 刪除角色名字
+    deletePlayerName (count) {
+      const deleteName = this.currentPlayer[count]
+
+      //* 從資料集中刪掉該筆資料
+      const deleteIndex = this.localPlayerName.findIndex(item => {
+        return item === deleteName
+      })
+      this.localPlayerName.splice(deleteIndex, 1)
+
+      //* 回傳回去 localStorage
+      localStorage.setItem('player1', JSON.stringify(this.localPlayerName))
+
+      //* 清空當前人物名稱
+      this.currentPlayer[count] = '選擇當前角色名稱'
+
+      //* 如果 localStorage 沒有儲存名字，則隱藏下拉選單
+      if (this.localPlayerName.length === 0) {
+        this.selectPlayerShow.showInput1 = true
+        this.selectPlayerShow.showInput2 = true
+      }
     },
     //* 開啟 Modal
     openModal () {
