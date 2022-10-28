@@ -1,10 +1,12 @@
 <template>
-  <ul class="d-flex justify-content-center list-unstyled my-3">
-    <li><button type="button" class="btn btn-primary me-2" @click="openModal">三王密碼</button></li>
-    <li><button type="button" class="btn btn-secondary" disabled><s>查看各階段 MVP 出場次數、機率(尚在開發中)</s></button></li>
-  </ul>
+  <header ref="header">
+    <ul class="d-flex justify-content-center list-unstyled mb-0 py-3">
+      <li><button type="button" class="btn btn-primary me-2" @click="openModal">三王密碼</button></li>
+      <li><button type="button" class="btn btn-secondary" disabled><s>查看各階段 MVP 出場次數、機率(尚在開發中)</s></button></li>
+    </ul>
+  </header>
 
-  <div class="d-flex">
+  <main class="d-flex" ref="mainArea">
     <!-- 左 -->
     <div class="container">
       <!-- 選擇人物名稱區塊 -->
@@ -118,8 +120,11 @@
         </div>
       </section>
     </div>
-  </div>
-  <FooterState></FooterState>
+  </main>
+
+  <footer>
+    <FooterState ref="foot"></FooterState>
+  </footer>
 
   <audio :src="musicPath" class="d-none" ref="audio" controls></audio>
   <ThreeBossPword ref="threeBossPword"></ThreeBossPword>
@@ -274,6 +279,14 @@ export default {
     openModal () {
       this.$refs.threeBossPword.openModal()
     }
+  },
+
+  mounted () {
+    //* 讓 Footer 置底
+    const headerH = this.$refs.header.offsetHeight
+    const footerH = this.$refs.foot.$refs.footer.offsetHeight
+    //* 中間區塊高度 = 100vh - (header + footer)    <- 讓 footer 置底
+    this.$refs.mainArea.style.minHeight = `calc(100vh - (${headerH + footerH}px))`
   }
 }
 </script>
