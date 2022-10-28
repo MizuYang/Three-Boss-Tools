@@ -287,6 +287,15 @@ export default {
     const footerH = this.$refs.foot.$refs.footer.offsetHeight
     //* 中間區塊高度 = 100vh - (header + footer)    <- 讓 footer 置底
     this.$refs.mainArea.style.minHeight = `calc(100vh - (${headerH + footerH}px))`
+
+    //* 造訪人數+1
+    this.$http.get('https://api.countapi.xyz/update/threeBoss/threeBoss/?amount=1')
+      .then(res => {
+        console.log(`目前造訪人數： ${res.data.value} 人`)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 </script>
