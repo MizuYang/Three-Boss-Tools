@@ -36,7 +36,7 @@
       <!-- 三個階段區塊 -->
       <section class="position-relative text-center border mb-3 py-3">
         <span class="progress-color-1" ref="progress-1"></span>
-        <h2 class="h1 mb-3">(1) 第一階段</h2>
+        <h2 class="h1 mb-3">第一階段</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['1']?showTime['1']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(1)" :disabled="time['1']<160000">開始</button>
@@ -45,7 +45,7 @@
       </section>
       <section class="position-relative text-center border mb-3 py-3">
         <span class="progress-color-2" ref="progress-2"></span>
-        <h2 class="h1 mb-3">(2) 第二階段</h2>
+        <h2 class="h1 mb-3">第二階段</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['2']?showTime['2']:' 1 分 20 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(2)" :disabled="time['2']<3000">開始</button>
@@ -54,7 +54,7 @@
       </section>
       <section class="position-relative text-center border py-3">
         <span class="progress-color-3" ref="progress-3"></span>
-        <h2 class="h1 mb-3">(3) 第三階段</h2>
+        <h2 class="h1 mb-3">第三階段</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['3']?showTime['3']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(3)" :disabled="time['3']<160000">開始</button>
@@ -92,7 +92,7 @@
       <!-- 三個階段區塊 -->
       <section class="position-relative text-center border mb-3 py-3">
         <span class="progress-color-1" ref="progress-4"></span>
-        <h2 class="h1 mb-3">(1) 第一階段</h2>
+        <h2 class="h1 mb-3">第一階段</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['4']?showTime['4']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(4)" :disabled="time['4']<160000">開始</button>
@@ -101,7 +101,7 @@
       </section>
       <section class="position-relative text-center border mb-3 py-3">
         <span class="progress-color-2" ref="progress-5"></span>
-        <h2 class="h1 mb-3">(2) 第二階段</h2>
+        <h2 class="h1 mb-3">第二階段</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['5']?showTime['5']:' 1 分 20 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(5)" :disabled="time['5']<3000">開始</button>
@@ -110,7 +110,7 @@
       </section>
       <section class="position-relative text-center border py-3">
         <span class="progress-color-3" ref="progress-6"></span>
-        <h2 class="h1 mb-3">(3) 第三階段</h2>
+        <h2 class="h1 mb-3">第三階段</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['6']?showTime['6']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(6)" :disabled="time['6']<160000">開始</button>
