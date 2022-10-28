@@ -119,16 +119,19 @@
       </section>
     </div>
   </div>
+  <FooterState></FooterState>
 
   <audio :src="musicPath" class="d-none" ref="audio" controls></audio>
   <ThreeBossPword ref="threeBossPword"></ThreeBossPword>
 </template>
 
 <script>
+import FooterState from '../components/layout/FooterState.vue'
 import musicPath from '../assets/sounds/門鈴.wav'
 import ThreeBossPword from '../components/modal/ThreeBossPword.vue'
 export default {
   components: {
+    FooterState,
     ThreeBossPword
   },
 
