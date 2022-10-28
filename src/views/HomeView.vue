@@ -7,31 +7,36 @@
   </header>
 
   <main class="d-flex" ref="mainArea">
+
     <!-- 左 -->
     <div class="container">
       <!-- 選擇人物名稱區塊 -->
       <header class="border mb-3 p-2">
         <!-- 人物名稱 -->
-        <div class="d-flex align-items-center justify-content-center my-3">
+        <div class="position-relative d-flex align-items-center justify-content-center my-3">
           <h3 class="text-center mb-0 me-3">{{ currentPlayer['1']==='選擇當前角色名稱'? '請選擇人物':currentPlayer['1'] }}
           </h3>
           <button type="button" class="btn btn-danger btn-sm" v-if="currentPlayer['1']!=='選擇當前角色名稱'" @click="deletePlayerName(1)">刪</button>
+
+          <!-- 按鈕切換 -->
+          <div class="position-absolute end-0">
+            <button class="btn btn-primary btn-sm" type="button" @click="selectPlayerShow.showInput1=true" :disabled="localPlayerName.length>0&&selectPlayerShow['showInput1']">新增人物</button>
+            <button class="btn btn-success btn-sm" type="button" @click="selectPlayerShow['showInput1']=false" :disabled="localPlayerName.length===0||!selectPlayerShow['showInput1']">選擇人物</button>
+          </div>
         </div>
 
         <!-- 新增人物名稱輸入框 -->
         <div class="d-flex align-items-center justify-content-center" v-if="selectPlayerShow['showInput1']">
           <input type="text" placeholder="輸入角色名稱" class="my-2 me-1 ps-1 w-25" v-model="playerInput['1']">
-          <button class="btn btn-primary btn-sm me-1" type="button" @click="savePlayerName(1)">儲存</button>
-          <button class="btn btn-success btn-sm" type="button" @click="selectPlayerShow['showInput1']=false" v-if="selectPlayerShow['showInput1']&&localPlayerName.length>0">常用人物</button>
+          <button class="btn btn-primary btn-sm me-1" type="button" @click="addPlayerName(1)">新增</button>
         </div>
 
-        <!-- 常用人物下拉選擇 -->
+        <!-- 選擇人物下拉選擇 -->
         <div class="d-flex align-items-center justify-content-center mb-2" v-else>
           <select class="form-select form-select-sm w-50 me-1" aria-label="Default select example" v-model="currentPlayer['1']">
             <option selected disabled>選擇當前角色名稱</option>
             <option :value="playerName" v-for="playerName in localPlayerName" :key="playerName">{{ playerName }}</option>
           </select>
-          <button class="btn btn-success btn-sm me-3" type="button" @click="selectPlayerShow.showInput1=true">新增人物</button>
         </div>
       </header>
 
@@ -64,30 +69,35 @@
         </div>
       </section>
     </div>
+
     <!-- 右 -->
     <div class="container">
       <!-- 選擇人物名稱區塊 -->
-      <header class="border mb-3 p-2">
+      <header class="position-relative border mb-3 p-2">
         <!-- 人物名稱 -->
         <div class="d-flex align-items-center justify-content-center my-3">
           <h3 class="text-center mb-0 me-3">{{ currentPlayer['2']==='選擇當前角色名稱'? '請選擇人物':currentPlayer['2'] }}</h3>
-          <button type="button" class="btn btn-danger btn-sm" v-if="currentPlayer['2']!=='選擇當前角色名稱'">刪</button>
+          <button type="button" class="btn btn-danger btn-sm" v-if="currentPlayer['2']!=='選擇當前角色名稱'" @click="deletePlayerName(2)">刪</button>
+
+          <!-- 按鈕切換 -->
+          <div class="position-absolute end-0 me-2">
+            <button class="btn btn-primary btn-sm" type="button" @click="selectPlayerShow.showInput2=true" :disabled="localPlayerName.length>0&&selectPlayerShow['showInput2']">新增人物</button>
+            <button class="btn btn-success btn-sm" type="button" @click="selectPlayerShow['showInput2']=false" :disabled="localPlayerName.length===0||!selectPlayerShow['showInput2']">選擇人物</button>
+          </div>
         </div>
 
         <!-- 新增人物名稱輸入框 -->
         <div class="d-flex align-items-center justify-content-center" v-if="selectPlayerShow['showInput2']">
           <input type="text" placeholder="輸入角色名稱" class="my-2 me-1 ps-1 w-25" v-model="playerInput['2']">
-          <button class="btn btn-primary btn-sm me-1" type="button" @click="savePlayerName(2)">儲存</button>
-          <button class="btn btn-success btn-sm" type="button" @click="selectPlayerShow['showInput2']=false" v-if="selectPlayerShow['showInput2']&&localPlayerName.length>0">常用人物</button>
+          <button class="btn btn-primary btn-sm me-1" type="button" @click="addPlayerName(2)">新增</button>
         </div>
 
-        <!-- 常用人物下拉選擇 -->
+        <!-- 選擇人物下拉選擇 -->
         <div class="d-flex align-items-center justify-content-center mb-2" v-else>
           <select class="form-select form-select-sm w-50 me-1" aria-label="Default select example" v-model="currentPlayer['2']">
             <option selected disabled>選擇當前角色名稱</option>
             <option :value="playerName" v-for="playerName in localPlayerName" :key="playerName">{{ playerName }}</option>
           </select>
-          <button class="btn btn-success btn-sm me-3" type="button" @click="selectPlayerShow.showInput2=true">新增人物</button>
         </div>
       </header>
 
@@ -171,7 +181,7 @@ export default {
         1: '選擇當前角色名稱',
         2: '選擇當前角色名稱'
       },
-      selectPlayerShow: { //* 判斷顯示新增輸入或常用人物下拉選單
+      selectPlayerShow: { //* 判斷顯示新增輸入或選擇人物下拉選單
         showInput1: true,
         showInput2: true
       }
@@ -179,7 +189,7 @@ export default {
   },
 
   watch: {
-    //* 本地端有儲存的名字，才顯示"切換常用人物"、並且預設顯示下拉選單區塊
+    //* 本地端有儲存的名字，才顯示"切換選擇人物"、並且預設顯示下拉選單區塊
     localPlayerName: {
       handler () {
         if (this.localPlayerName.length > 0) {
@@ -238,7 +248,7 @@ export default {
       clearInterval(this.timeStamp[count])
     },
     //* 新增角色名字到 localStorage
-    savePlayerName (count) {
+    addPlayerName (count) {
       const playerName = this.playerInput[count]
 
       if (!playerName) return
