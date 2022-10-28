@@ -48,8 +48,8 @@
         <h2 class="h1 mb-3">(2) 第二階段</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['2']?showTime['2']:' 1 分 20 秒 '  }}</h3>
-          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(2)" :disabled="time['2']<80000">開始</button>
-          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(2)" :disabled="time['2']===80000">重置</button>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(2)" :disabled="time['2']<3000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(2)" :disabled="time['2']===3000">重置</button>
         </div>
       </section>
       <section class="position-relative text-center border py-3">
@@ -104,8 +104,8 @@
         <h2 class="h1 mb-3">(2) 第二階段</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['5']?showTime['5']:' 1 分 20 秒 '  }}</h3>
-          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(5)" :disabled="time['5']<80000">開始</button>
-          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(5)" :disabled="time['5']===80000">重置</button>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(5)" :disabled="time['5']<3000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(5)" :disabled="time['5']===3000">重置</button>
         </div>
       </section>
       <section class="position-relative text-center border py-3">
@@ -137,18 +137,18 @@ export default {
       musicPath: musicPath,
       originTime: {
         1: 160000,
-        2: 80000,
+        2: 3000,
         3: 160000,
         4: 160000,
-        5: 80000,
+        5: 3000,
         6: 160000
       },
       time: {
         1: 160000,
-        2: 80000,
+        2: 3000,
         3: 160000,
         4: 160000,
-        5: 80000,
+        5: 3000,
         6: 160000
       },
       showTime: {}, //* 畫面顯示的時間
@@ -197,6 +197,8 @@ export default {
 
         if (this.time[count] <= 0) {
           this.showTime[count] = '已出王'
+          this.$refs.audio.play() //* 音效
+          this.$refs.audio.pause() //* 音效
           this.$refs.audio.play() //* 音效
           clearInterval(this.timeStamp[count]) //* 清除倒數計時
         }
