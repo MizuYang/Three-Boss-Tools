@@ -71,4 +71,3 @@
 
 
 <img src="./src/assets/王出場階段示意圖.png" alt="王出場階段示意圖">
-
