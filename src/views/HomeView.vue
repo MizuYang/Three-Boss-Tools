@@ -173,6 +173,15 @@ export default {
       selectPlayerShow: { //* 判斷顯示新增輸入或選擇角色下拉選單
         showInput1: true,
         showInput2: true
+      },
+      day: {
+        0: '日',
+        1: '一',
+        2: '二',
+        3: '三',
+        4: '四',
+        5: '五',
+        6: '六'
       }
     }
   },
@@ -196,7 +205,7 @@ export default {
   computed: {
     getToday () {
       const Today = new Date()
-      const str = `${Today.getFullYear()}/${Today.getMonth() + 1}/${Today.getDate()}`
+      const str = `${Today.getFullYear()}/${Today.getMonth() + 1}/${Today.getDate()} (${this.day[Today.getDay()]})`
       return str
     },
     getThreeBossPword () {
