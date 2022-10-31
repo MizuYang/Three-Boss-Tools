@@ -67,7 +67,7 @@
   </li>
 </ul>
 
-<img src="./src/assets/畫面示意圖.png" alt="操作介面示意圖">
+<img src="./src/assets/畫面介紹.png" alt="操作介面示意圖">
 
 
-<img src="./src/assets/王出場階段示意圖.png" alt="王出場階段示意圖">
+<img src="./src/assets/王出場階段.png" alt="王出場階段示意圖">
