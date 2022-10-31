@@ -212,7 +212,7 @@ export default {
       let num = null
       const position = []
       const Today = new Date()
-      const m = Today.getMonth()
+      const m = Today.getMonth() +1
       const d = Today.getDate()
       num = ((m + d) * 5).toString('2')
       if (num.length !== 8) {
