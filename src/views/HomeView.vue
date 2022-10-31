@@ -8,6 +8,9 @@
         <button class="btn btn-primary btn-sm me-1" type="button" @click="addPlayerName(1)">新增</button>
       </li>
       <!-- <li class="me-auto"><button type="button" class="btn btn-primary btn-sm" @click="openModal">三王密碼</button></li> -->
+      <li class="me-auto">
+        <a href="https://forum.gamer.com.tw/C.php?bsn=4212&snA=433749" target="_blank" class="fs-5 text-decoration-none">三王密碼查詢</a>
+      </li>
     </ul>
   </header>
 
