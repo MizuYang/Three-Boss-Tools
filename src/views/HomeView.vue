@@ -224,11 +224,6 @@ export default {
         num = `${data.join('')}${num}`
       }
 
-      //* 在三王8字元的密碼中間加入一個空格，例：1111 0000
-      const newNum = num.split('')
-      newNum.splice(4, 0, ' ').join(' ')
-      num = newNum.join('')
-
       //* 抓出密碼 "on" 的位置
       num.split('').forEach((item, i) => {
         if (item === '1') {
@@ -236,6 +231,11 @@ export default {
         }
       })
       num = `${num} (${position})`
+
+      //* 在三王8字元的密碼中間加入一個空格，例：1111 0000
+      const newNum = num.split('')
+      newNum.splice(4, 0, ' ').join(' ')
+      num = newNum.join('')
 
       return num
     }
