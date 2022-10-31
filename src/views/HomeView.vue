@@ -1,8 +1,13 @@
 <template>
   <header ref="header">
-    <ul class="d-flex justify-content-center list-unstyled mb-0 py-3">
-      <li><button type="button" class="btn btn-primary me-2" @click="openModal">三王密碼</button></li>
-      <li><button type="button" class="btn btn-secondary" disabled><s>查看各階段 MVP 出場次數、機率(尚在開發中)</s></button></li>
+    <ul class="d-flex justify-content-center align-items-center list-unstyled mb-0 py-3">
+      <li class="ms-auto"><h3 class="mb-0">{{ getToday }}</h3></li>
+      <li class="bg-gray mx-auto p-2"><h3 class="fw-bold mb-0">{{ getThreeBossPword }}</h3></li>
+      <li class="d-flex align-items-center justify-content-center me-auto">
+        <input type="text" placeholder="輸入角色名稱" class="my-2 me-1 ps-1" v-model="playerInput['1']">
+        <button class="btn btn-primary btn-sm me-1" type="button" @click="addPlayerName(1)">新增</button>
+      </li>
+      <li class="me-auto"><button type="button" class="btn btn-primary btn-sm" @click="openModal">三王密碼</button></li>
     </ul>
   </header>
 
@@ -17,22 +22,10 @@
           <h3 class="text-center mb-0 me-3">{{ currentPlayer['1']==='選擇當前角色名稱'? '請選擇人物':currentPlayer['1'] }}
           </h3>
           <button type="button" class="btn btn-danger btn-sm" v-if="currentPlayer['1']!=='選擇當前角色名稱'" @click="deletePlayerName(1)">刪</button>
-
-          <!-- 按鈕切換 -->
-          <div class="position-absolute end-0">
-            <button class="btn btn-primary btn-sm" type="button" @click="selectPlayerShow.showInput1=true" :disabled="localPlayerName.length>0&&selectPlayerShow['showInput1']">新增人物</button>
-            <button class="btn btn-success btn-sm" type="button" @click="selectPlayerShow['showInput1']=false" :disabled="localPlayerName.length===0||!selectPlayerShow['showInput1']">選擇人物</button>
-          </div>
-        </div>
-
-        <!-- 新增人物名稱輸入框 -->
-        <div class="d-flex align-items-center justify-content-center" v-if="selectPlayerShow['showInput1']">
-          <input type="text" placeholder="輸入角色名稱" class="my-2 me-1 ps-1 w-25" v-model="playerInput['1']">
-          <button class="btn btn-primary btn-sm me-1" type="button" @click="addPlayerName(1)">新增</button>
         </div>
 
         <!-- 選擇人物下拉選擇 -->
-        <div class="d-flex align-items-center justify-content-center mb-2" v-else>
+        <div class="d-flex align-items-center justify-content-center mb-2">
           <select class="form-select form-select-sm w-50 me-1" aria-label="Default select example" v-model="currentPlayer['1']">
             <option selected disabled>選擇當前角色名稱</option>
             <option :value="playerName" v-for="playerName in localPlayerName" :key="playerName">{{ playerName }}</option>
@@ -45,7 +38,7 @@
         <span class="progress-color-1" ref="progress-1"></span>
         <h2 class="h1 mb-3">第一階段</h2>
         <div class="d-flex align-items-center justify-content-center">
-          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['1']?showTime['1']:' 2 分 40 秒 '  }}</h3>
+          <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['1']?showTime['1']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(1)" :disabled="time['1']<160000">開始</button>
           <button type="button" class="btn btn-secondary p-lg" @click="resetTime(1)" :disabled="time['1']===160000">重置</button>
         </div>
@@ -54,7 +47,7 @@
         <span class="progress-color-2" ref="progress-2"></span>
         <h2 class="h1 mb-3">第二階段</h2>
         <div class="d-flex align-items-center justify-content-center">
-          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['2']?showTime['2']:' 1 分 20 秒 '  }}</h3>
+          <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['2']?showTime['2']:' 1 分 20 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(2)" :disabled="time['2']<80000">開始</button>
           <button type="button" class="btn btn-secondary p-lg" @click="resetTime(2)" :disabled="time['2']===80000">重置</button>
         </div>
@@ -63,7 +56,7 @@
         <span class="progress-color-3" ref="progress-3"></span>
         <h2 class="h1 mb-3">第三階段</h2>
         <div class="d-flex align-items-center justify-content-center">
-          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['3']?showTime['3']:' 2 分 40 秒 '  }}</h3>
+          <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['3']?showTime['3']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(3)" :disabled="time['3']<160000">開始</button>
           <button type="button" class="btn btn-secondary p-lg" @click="resetTime(3)" :disabled="time['3']===160000">重置</button>
         </div>
@@ -78,22 +71,10 @@
         <div class="d-flex align-items-center justify-content-center my-3">
           <h3 class="text-center mb-0 me-3">{{ currentPlayer['2']==='選擇當前角色名稱'? '請選擇人物':currentPlayer['2'] }}</h3>
           <button type="button" class="btn btn-danger btn-sm" v-if="currentPlayer['2']!=='選擇當前角色名稱'" @click="deletePlayerName(2)">刪</button>
-
-          <!-- 按鈕切換 -->
-          <div class="position-absolute end-0 me-2">
-            <button class="btn btn-primary btn-sm" type="button" @click="selectPlayerShow.showInput2=true" :disabled="localPlayerName.length>0&&selectPlayerShow['showInput2']">新增人物</button>
-            <button class="btn btn-success btn-sm" type="button" @click="selectPlayerShow['showInput2']=false" :disabled="localPlayerName.length===0||!selectPlayerShow['showInput2']">選擇人物</button>
-          </div>
-        </div>
-
-        <!-- 新增人物名稱輸入框 -->
-        <div class="d-flex align-items-center justify-content-center" v-if="selectPlayerShow['showInput2']">
-          <input type="text" placeholder="輸入角色名稱" class="my-2 me-1 ps-1 w-25" v-model="playerInput['2']">
-          <button class="btn btn-primary btn-sm me-1" type="button" @click="addPlayerName(2)">新增</button>
         </div>
 
         <!-- 選擇人物下拉選擇 -->
-        <div class="d-flex align-items-center justify-content-center mb-2" v-else>
+        <div class="d-flex align-items-center justify-content-center mb-2">
           <select class="form-select form-select-sm w-50 me-1" aria-label="Default select example" v-model="currentPlayer['2']">
             <option selected disabled>選擇當前角色名稱</option>
             <option :value="playerName" v-for="playerName in localPlayerName" :key="playerName">{{ playerName }}</option>
@@ -106,7 +87,7 @@
         <span class="progress-color-1" ref="progress-4"></span>
         <h2 class="h1 mb-3">第一階段</h2>
         <div class="d-flex align-items-center justify-content-center">
-          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['4']?showTime['4']:' 2 分 40 秒 '  }}</h3>
+          <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['4']?showTime['4']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(4)" :disabled="time['4']<160000">開始</button>
           <button type="button" class="btn btn-secondary p-lg" @click="resetTime(4)" :disabled="time['4']===160000">重置</button>
         </div>
@@ -115,7 +96,7 @@
         <span class="progress-color-2" ref="progress-5"></span>
         <h2 class="h1 mb-3">第二階段</h2>
         <div class="d-flex align-items-center justify-content-center">
-          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['5']?showTime['5']:' 1 分 20 秒 '  }}</h3>
+          <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['5']?showTime['5']:' 1 分 20 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(5)" :disabled="time['5']<80000">開始</button>
           <button type="button" class="btn btn-secondary p-lg" @click="resetTime(5)" :disabled="time['5']===80000">重置</button>
         </div>
@@ -124,7 +105,7 @@
         <span class="progress-color-3" ref="progress-6"></span>
         <h2 class="h1 mb-3">第三階段</h2>
         <div class="d-flex align-items-center justify-content-center">
-          <h3 class="fs-time bg-time select-none mb-0 me-3 p-2">{{ showTime['6']?showTime['6']:' 2 分 40 秒 '  }}</h3>
+          <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['6']?showTime['6']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(6)" :disabled="time['6']<160000">開始</button>
           <button type="button" class="btn btn-secondary p-lg" @click="resetTime(6)" :disabled="time['6']===160000">重置</button>
         </div>
@@ -201,6 +182,39 @@ export default {
         }
       },
       immediate: true
+    }
+  },
+
+  computed: {
+    getToday () {
+      const Today = new Date()
+      const str = `${Today.getFullYear()}/${Today.getMonth() + 1}/${Today.getDate()}`
+      return str
+    },
+    getThreeBossPword () {
+      let num = null
+      const position = []
+      const Today = new Date()
+      const m = Today.getMonth()
+      const d = Today.getDate()
+      num = ((m + d) * 5).toString('2')
+      if (num.length !== 8) {
+        const data = []
+        const addNum = 8 - num.length
+        for (let i = 0; i < addNum; i++) {
+          data.push(0)
+        }
+        num = `${data.join('')}${num}`
+      }
+      //* 抓出密碼 "on" 的位置
+      num.split('').forEach((item, i) => {
+        if (item === '1') {
+          position.push(i + 1)
+        }
+      })
+      num = `${num} (${position})`
+
+      return num
     }
   },
 
@@ -317,7 +331,7 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.bg-time {
+.bg-gray {
   background-color: rgb(191, 191, 191);
 }
 .fs-time {
