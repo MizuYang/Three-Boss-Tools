@@ -7,7 +7,7 @@
         <input type="text" placeholder="輸入角色名稱" class="my-2 me-1 ps-1" v-model="playerInput['1']">
         <button class="btn btn-primary btn-sm me-1" type="button" @click="addPlayerName(1)">新增</button>
       </li>
-      <li class="me-auto"><button type="button" class="btn btn-primary btn-sm" @click="openModal">三王密碼</button></li>
+      <!-- <li class="me-auto"><button type="button" class="btn btn-primary btn-sm" @click="openModal">三王密碼</button></li> -->
     </ul>
   </header>
 
@@ -15,16 +15,16 @@
 
     <!-- 左 -->
     <div class="container">
-      <!-- 選擇人物名稱區塊 -->
+      <!-- 選擇角色名稱區塊 -->
       <header class="border mb-3 p-2">
-        <!-- 人物名稱 -->
+        <!-- 角色名稱 -->
         <div class="position-relative d-flex align-items-center justify-content-center my-3">
-          <h3 class="text-center mb-0 me-3">{{ currentPlayer['1']==='選擇當前角色名稱'? '請選擇人物':currentPlayer['1'] }}
+          <h3 class="text-center mb-0 me-3">{{ currentPlayer['1']==='選擇當前角色名稱'? '請選擇角色':currentPlayer['1'] }}
           </h3>
           <button type="button" class="btn btn-danger btn-sm" v-if="currentPlayer['1']!=='選擇當前角色名稱'" @click="deletePlayerName(1)">刪</button>
         </div>
 
-        <!-- 選擇人物下拉選擇 -->
+        <!-- 選擇角色下拉選擇 -->
         <div class="d-flex align-items-center justify-content-center mb-2">
           <select class="form-select form-select-sm w-50 me-1" aria-label="Default select example" v-model="currentPlayer['1']">
             <option selected disabled>選擇當前角色名稱</option>
@@ -33,10 +33,10 @@
         </div>
       </header>
 
-      <!-- 三個階段區塊 -->
+      <!-- 三隻王區塊 -->
       <section class="position-relative text-center border mb-3 py-3">
         <span class="progress-color-1" ref="progress-1"></span>
-        <h2 class="h1 mb-3">第一階段</h2>
+        <h2 class="h1 mb-3">第一隻王</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['1']?showTime['1']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(1)" :disabled="time['1']<160000">開始</button>
@@ -45,7 +45,7 @@
       </section>
       <section class="position-relative text-center border mb-3 py-3">
         <span class="progress-color-2" ref="progress-2"></span>
-        <h2 class="h1 mb-3">第二階段</h2>
+        <h2 class="h1 mb-3">第二隻王</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['2']?showTime['2']:' 1 分 20 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(2)" :disabled="time['2']<80000">開始</button>
@@ -54,7 +54,7 @@
       </section>
       <section class="position-relative text-center border py-3">
         <span class="progress-color-3" ref="progress-3"></span>
-        <h2 class="h1 mb-3">第三階段</h2>
+        <h2 class="h1 mb-3">第三隻王</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['3']?showTime['3']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(3)" :disabled="time['3']<160000">開始</button>
@@ -65,15 +65,15 @@
 
     <!-- 右 -->
     <div class="container">
-      <!-- 選擇人物名稱區塊 -->
+      <!-- 選擇角色名稱區塊 -->
       <header class="position-relative border mb-3 p-2">
-        <!-- 人物名稱 -->
+        <!-- 角色名稱 -->
         <div class="d-flex align-items-center justify-content-center my-3">
-          <h3 class="text-center mb-0 me-3">{{ currentPlayer['2']==='選擇當前角色名稱'? '請選擇人物':currentPlayer['2'] }}</h3>
+          <h3 class="text-center mb-0 me-3">{{ currentPlayer['2']==='選擇當前角色名稱'? '請選擇角色':currentPlayer['2'] }}</h3>
           <button type="button" class="btn btn-danger btn-sm" v-if="currentPlayer['2']!=='選擇當前角色名稱'" @click="deletePlayerName(2)">刪</button>
         </div>
 
-        <!-- 選擇人物下拉選擇 -->
+        <!-- 選擇角色下拉選擇 -->
         <div class="d-flex align-items-center justify-content-center mb-2">
           <select class="form-select form-select-sm w-50 me-1" aria-label="Default select example" v-model="currentPlayer['2']">
             <option selected disabled>選擇當前角色名稱</option>
@@ -82,10 +82,10 @@
         </div>
       </header>
 
-      <!-- 三個階段區塊 -->
+      <!-- 三隻王區塊 -->
       <section class="position-relative text-center border mb-3 py-3">
         <span class="progress-color-1" ref="progress-4"></span>
-        <h2 class="h1 mb-3">第一階段</h2>
+        <h2 class="h1 mb-3">第一隻王</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['4']?showTime['4']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(4)" :disabled="time['4']<160000">開始</button>
@@ -94,7 +94,7 @@
       </section>
       <section class="position-relative text-center border mb-3 py-3">
         <span class="progress-color-2" ref="progress-5"></span>
-        <h2 class="h1 mb-3">第二階段</h2>
+        <h2 class="h1 mb-3">第二隻王</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['5']?showTime['5']:' 1 分 20 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(5)" :disabled="time['5']<80000">開始</button>
@@ -103,7 +103,7 @@
       </section>
       <section class="position-relative text-center border py-3">
         <span class="progress-color-3" ref="progress-6"></span>
-        <h2 class="h1 mb-3">第三階段</h2>
+        <h2 class="h1 mb-3">第三隻王</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['6']?showTime['6']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(6)" :disabled="time['6']<160000">開始</button>
@@ -118,16 +118,21 @@
   </footer>
 
   <audio :src="musicPath" class="d-none" ref="audio" controls></audio>
+
+  <!-- Modal -->
   <ThreeBossPword ref="threeBossPword"></ThreeBossPword>
+  <AddNameErr ref="addNameErr"></AddNameErr>
 </template>
 
 <script>
 import FooterState from '../components/layout/FooterState.vue'
+import AddNameErr from '../components/modal/AddNameErr.vue'
 import musicPath from '../assets/sounds/門鈴.wav'
 import ThreeBossPword from '../components/modal/ThreeBossPword.vue'
 export default {
   components: {
     FooterState,
+    AddNameErr,
     ThreeBossPword
   },
 
@@ -156,13 +161,13 @@ export default {
         1: '',
         2: ''
       },
-      //* localStorage 中已儲存的人物名稱(迴圈下拉選單)
+      //* localStorage 中已儲存的角色名稱(迴圈下拉選單)
       localPlayerName: JSON.parse(localStorage.getItem('player1')) || [],
       currentPlayer: {
         1: '選擇當前角色名稱',
         2: '選擇當前角色名稱'
       },
-      selectPlayerShow: { //* 判斷顯示新增輸入或選擇人物下拉選單
+      selectPlayerShow: { //* 判斷顯示新增輸入或選擇角色下拉選單
         showInput1: true,
         showInput2: true
       }
@@ -170,7 +175,7 @@ export default {
   },
 
   watch: {
-    //* 本地端有儲存的名字，才顯示"切換選擇人物"、並且預設顯示下拉選單區塊
+    //* 本地端有儲存的名字，才顯示"切換選擇角色"、並且預設顯示下拉選單區塊
     localPlayerName: {
       handler () {
         if (this.localPlayerName.length > 0) {
@@ -265,7 +270,11 @@ export default {
     addPlayerName (count) {
       const playerName = this.playerInput[count]
 
-      if (!playerName) return
+      //* 未輸入字元
+      if (!playerName) {
+        this.$refs.addNameErr.modal.show()
+        return
+      }
 
       //* 取出舊的資料
       this.localPlayerName = JSON.parse(localStorage.getItem('player1')) || []
@@ -290,7 +299,7 @@ export default {
       //* 回傳回去 localStorage
       localStorage.setItem('player1', JSON.stringify(this.localPlayerName))
 
-      //* 清空當前人物名稱
+      //* 清空當前角色名稱
       this.currentPlayer[count] = '選擇當前角色名稱'
 
       //* 如果 localStorage 沒有儲存名字，則隱藏下拉選單

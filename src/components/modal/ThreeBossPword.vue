@@ -8,6 +8,7 @@
         </div>
         <div class="modal-body">
           <img src="../../assets/三王.png" alt="三王密碼的圖片" class="d-block img-fluid mx-auto">
+          <!-- <img src="../../assets/三王密碼年表.jpg" alt="三王密碼的圖片" class="d-block img-fluid mx-auto"> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
