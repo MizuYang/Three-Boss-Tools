@@ -1,15 +1,15 @@
 <template>
-  <header ref="header">
+  <header ref="header" class="bg-dark text-light">
     <ul class="d-flex justify-content-center align-items-center list-unstyled mb-0 py-3">
       <li class="ms-auto"><h3 class="mb-0">{{ getToday }}</h3></li>
-      <li class="bg-gray mx-auto p-2"><h3 class="fw-bold mb-0">{{ getThreeBossPword }}</h3></li>
-      <li class="d-flex align-items-center justify-content-center me-auto">
-        <input type="text" placeholder="輸入角色名稱" class="my-2 me-1 ps-1" v-model="playerInput['1']">
+      <li class="bg-gray mx-auto p-2"><h3 class="text-dark fw-bold mb-0">{{ getThreeBossPword }}</h3></li>
+      <li class="bg-gray d-flex justify-content-center me-auto p-1">
+        <input type="text" placeholder="輸入角色名稱" class="me-1 ps-1" v-model="playerInput['1']">
         <button class="btn btn-primary btn-sm me-1" type="button" @click="addPlayerName(1)">新增</button>
       </li>
       <!-- <li class="me-auto"><button type="button" class="btn btn-primary btn-sm" @click="openModal">三王密碼</button></li> -->
       <li class="me-auto">
-        <a href="https://forum.gamer.com.tw/C.php?bsn=4212&snA=433749" target="_blank" class="fs-5 text-decoration-none">三王密碼查詢</a>
+        <a href="https://forum.gamer.com.tw/C.php?bsn=4212&snA=433749" target="_blank" class="bg-success text-light fs-5 text-decoration-none p-2">三王密碼查詢</a>
       </li>
     </ul>
   </header>
@@ -17,7 +17,7 @@
   <main class="d-flex" ref="mainArea">
 
     <!-- 左 -->
-    <div class="container">
+    <div class="container pt-3">
       <!-- 選擇角色名稱區塊 -->
       <header class="border mb-3 p-2">
         <!-- 角色名稱 -->
@@ -67,7 +67,7 @@
     </div>
 
     <!-- 右 -->
-    <div class="container">
+    <div class="container pt-3">
       <!-- 選擇角色名稱區塊 -->
       <header class="position-relative border mb-3 p-2">
         <!-- 角色名稱 -->
@@ -352,12 +352,6 @@ export default {
 </script>
 
 <style lang='scss' scope>
-.center-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
 .bg-gray {
   background-color: rgb(191, 191, 191);
 }
