@@ -42,8 +42,8 @@
         <h2 class="h1 mb-3">第一隻王</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['1']?showTime['1']:' 2 分 40 秒 '  }}</h3>
-          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(1)" :disabled="time['1']<3000">開始</button>
-          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(1)" :disabled="time['1']===3000">重置</button>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(1)" :disabled="time['1']<160000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(1)" :disabled="time['1']===160000">重置</button>
         </div>
       </section>
       <section class="position-relative text-center border mb-3 py-3">
@@ -66,8 +66,8 @@
           </div>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['3']?showTime['3']:' 2 分 40 秒 '  }}</h3>
-          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(3)" :disabled="time['3']<3000">開始</button>
-          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(3)" :disabled="time['3']===3000">重置</button>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(3)" :disabled="time['3']<160000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(3)" :disabled="time['3']===160000">重置</button>
         </div>
       </section>
     </div>
@@ -97,8 +97,8 @@
         <h2 class="h1 mb-3">第一隻王</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['4']?showTime['4']:' 2 分 40 秒 '  }}</h3>
-          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(4)" :disabled="time['4']<3000">開始</button>
-          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(4)" :disabled="time['4']===3000">重置</button>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(4)" :disabled="time['4']<160000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(4)" :disabled="time['4']===160000">重置</button>
         </div>
       </section>
       <section class="position-relative text-center border mb-3 py-3">
@@ -121,8 +121,8 @@
           </div>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['6']?showTime['6']:' 2 分 40 秒 '  }}</h3>
-          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(6)" :disabled="time['6']<3000">開始</button>
-          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(6)" :disabled="time['6']===3000">重置</button>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(6)" :disabled="time['6']<160000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(6)" :disabled="time['6']===160000">重置</button>
         </div>
       </section>
     </div>
@@ -155,20 +155,20 @@ export default {
     return {
       musicPath: musicPath,
       originTime: {
-        1: 3000,
+        1: 160000,
         2: 80000,
-        3: 3000,
-        4: 3000,
+        3: 160000,
+        4: 160000,
         5: 80000,
-        6: 3000
+        6: 160000
       },
       time: {
-        1: 3000,
+        1: 160000,
         2: 80000,
-        3: 3000,
-        4: 3000,
+        3: 160000,
+        4: 160000,
         5: 80000,
-        6: 3000
+        6: 160000
       },
       showTime: {}, //* 畫面顯示的時間
       timeStamp: {}, //* 用來暫停計時器
