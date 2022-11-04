@@ -42,8 +42,8 @@
         <h2 class="h1 mb-3">第一隻王</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['1']?showTime['1']:' 2 分 40 秒 '  }}</h3>
-          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(1)" :disabled="time['1']<160000">開始</button>
-          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(1)" :disabled="time['1']===160000">重置</button>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(1)" :disabled="time['1']<3000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(1)" :disabled="time['1']===3000">重置</button>
         </div>
       </section>
       <section class="position-relative text-center border mb-3 py-3">
@@ -57,11 +57,17 @@
       </section>
       <section class="position-relative text-center border py-3">
         <span class="progress-color-3" ref="progress-3"></span>
-        <h2 class="h1 mb-3">第三隻王</h2>
+          <h2 class="h1 mb-3">第三隻王</h2>
+          <!-- 離場按鈕 -->
+          <div class="d-none position-absolute top-0 end-0 mt-4" ref="exitArea3">
+            <input type="text" class="w-25 mt-auto" v-model="exeitTime">
+            <button type="button" class="btn btn-success btn-sm ms-2" @click="exit(3)" ref="exitBtn3">離場</button>
+            <button type="button" class="btn btn-secondary btn-sm ms-2" @click="exitReset(3)">重置</button>
+          </div>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['3']?showTime['3']:' 2 分 40 秒 '  }}</h3>
-          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(3)" :disabled="time['3']<160000">開始</button>
-          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(3)" :disabled="time['3']===160000">重置</button>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(3)" :disabled="time['3']<3000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(3)" :disabled="time['3']===3000">重置</button>
         </div>
       </section>
     </div>
@@ -91,8 +97,8 @@
         <h2 class="h1 mb-3">第一隻王</h2>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['4']?showTime['4']:' 2 分 40 秒 '  }}</h3>
-          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(4)" :disabled="time['4']<160000">開始</button>
-          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(4)" :disabled="time['4']===160000">重置</button>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(4)" :disabled="time['4']<3000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(4)" :disabled="time['4']===3000">重置</button>
         </div>
       </section>
       <section class="position-relative text-center border mb-3 py-3">
@@ -107,10 +113,16 @@
       <section class="position-relative text-center border py-3">
         <span class="progress-color-3" ref="progress-6"></span>
         <h2 class="h1 mb-3">第三隻王</h2>
+        <!-- 離場按鈕 -->
+        <div class="d-none position-absolute top-0 end-0 mt-4" ref="exitArea6">
+            <input type="text" class="w-25 mt-auto" v-model="exeitTime">
+            <button type="button" class="btn btn-success btn-sm ms-2" @click="exit(6)" ref="exitBtn6">離場</button>
+            <button type="button" class="btn btn-secondary btn-sm ms-2" @click="exitReset(6)">重置</button>
+          </div>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['6']?showTime['6']:' 2 分 40 秒 '  }}</h3>
-          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(6)" :disabled="time['6']<160000">開始</button>
-          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(6)" :disabled="time['6']===160000">重置</button>
+          <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(6)" :disabled="time['6']<3000">開始</button>
+          <button type="button" class="btn btn-secondary p-lg" @click="resetTime(6)" :disabled="time['6']===3000">重置</button>
         </div>
       </section>
     </div>
@@ -143,20 +155,20 @@ export default {
     return {
       musicPath: musicPath,
       originTime: {
-        1: 160000,
+        1: 3000,
         2: 80000,
-        3: 160000,
-        4: 160000,
+        3: 3000,
+        4: 3000,
         5: 80000,
-        6: 160000
+        6: 3000
       },
       time: {
-        1: 160000,
+        1: 3000,
         2: 80000,
-        3: 160000,
-        4: 160000,
+        3: 3000,
+        4: 3000,
         5: 80000,
-        6: 160000
+        6: 3000
       },
       showTime: {}, //* 畫面顯示的時間
       timeStamp: {}, //* 用來暫停計時器
@@ -182,7 +194,8 @@ export default {
         4: '四',
         5: '五',
         6: '六'
-      }
+      },
+      exeitTime: JSON.parse(localStorage.getItem('exitTime')) || ''
     }
   },
 
@@ -255,6 +268,7 @@ export default {
           this.$refs.audio.play() //* 音效
           this.$refs.audio.pause() //* 音效
           this.$refs.audio.play() //* 音效
+          this.$refs[`exitArea${count}`].classList.remove('d-none') //* 顯示離場區塊
           clearInterval(this.timeStamp[count]) //* 清除倒數計時
         }
       }, 1000)
@@ -329,6 +343,56 @@ export default {
     //* 開啟 Modal
     openModal () {
       this.$refs.threeBossPword.openModal()
+    },
+    //* 離場
+    exit (count) {
+      //* 把離場時間存到 localStorage
+      localStorage.setItem('exitTime', JSON.stringify(this.exeitTime))
+
+      //* 按鈕 Disabled 防止多次點擊
+      this.$refs[`exitBtn${count}`].setAttribute('disabled', true)
+
+      this.time[count] = this.exeitTime
+      //* 顯示 分/秒 計算
+      const min = parseInt(this.time[count] / 1000 / 60 % 60)
+      const sec = parseInt(this.time[count] / 1000 % 60)
+
+      this.showTime[count] = ` ${min} 分 ${sec} 秒`
+
+      //* 三王倒數計時：2分40秒，1分20秒，2分40秒
+      this.time[count] -= 1 //* 先直接-1，讓該按鈕進入 disabled
+      this.timeStamp[count] = setInterval(() => {
+        this.computed(count, 'backTime')
+
+        //* 進度條
+        const time = this.exeitTime
+
+        this.$refs[`progress-${count}`].style.width = `${100 - Math.ceil(this.time[count] / time * 100)}%`
+
+        if (this.time[count] <= 0) {
+          this.showTime[count] = '可離場'
+          this.$refs.audio.play() //* 音效
+          this.$refs.audio.pause() //* 音效
+          this.$refs.audio.play() //* 音效
+          this.$refs[`exitBtn${count}`].removeAttribute('disabled') //* 移除出場按鈕 Disabled
+          clearInterval(this.timeStamp[count]) //* 清除倒數計時
+        }
+      }, 1000)
+    },
+    //* 離場重置
+    exitReset (count) {
+      this.time[count] = this.exeitTime
+      //* 顯示 分/秒 計算
+      const min = parseInt(this.time[count] / 1000 / 60 % 60)
+      const sec = parseInt(this.time[count] / 1000 % 60)
+
+      this.showTime[count] = ` ${min} 分 ${sec} 秒`
+
+      //* 進度條
+      const time = this.exeitTime
+      this.$refs[`progress-${count}`].style.width = `${100 - Math.ceil(this.time[count] / time * 100)}%`
+
+      clearInterval(this.timeStamp['3']) //* 清除倒數計時
     }
   },
 
@@ -352,6 +416,9 @@ export default {
 </script>
 
 <style lang='scss' scope>
+.w-25 {
+  width: 25%;
+}
 .bg-gray {
   background-color: rgb(191, 191, 191);
 }
