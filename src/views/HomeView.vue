@@ -395,6 +395,9 @@ export default {
       const time = this.exeitTime
       this.$refs[`progress-${count}`].style.width = `${100 - Math.ceil(this.time[count] / time * 100)}%`
 
+      //* 移除出場按鈕 Disabled
+      this.$refs[`exitBtn${count}`].removeAttribute('disabled')
+
       clearInterval(this.timeStamp['3']) //* 清除倒數計時
     }
   },
