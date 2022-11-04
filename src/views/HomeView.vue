@@ -398,7 +398,7 @@ export default {
       //* 移除出場按鈕 Disabled
       this.$refs[`exitBtn${count}`].removeAttribute('disabled')
 
-      clearInterval(this.timeStamp['3']) //* 清除倒數計時
+      clearInterval(this.timeStamp[count]) //* 清除倒數計時
     }
   },
 
