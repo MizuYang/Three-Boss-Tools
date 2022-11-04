@@ -268,8 +268,11 @@ export default {
           this.$refs.audio.play() //* 音效
           this.$refs.audio.pause() //* 音效
           this.$refs.audio.play() //* 音效
-          this.$refs[`exitArea${count}`].classList.remove('d-none') //* 顯示離場區塊
           clearInterval(this.timeStamp[count]) //* 清除倒數計時
+          //* 離場區塊顯示
+          if (count === 6 || count === 3) {
+            this.$refs[`exitArea${count}`].classList.remove('d-none') //* 顯示離場區塊
+          }
         }
       }, 1000)
     },
