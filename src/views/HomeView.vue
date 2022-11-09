@@ -59,8 +59,7 @@
         <span class="progress-color-3" ref="progress-3"></span>
           <h2 class="h1 mb-3">第三隻王</h2>
           <!-- 離場按鈕 -->
-          <div class="d-none position-absolute top-0 end-0 mt-4" ref="exitArea3">
-            <input type="text" class="w-25 mt-auto" v-model="exeitTime">
+          <div class="d-none position-absolute top-0 end-0 mt-4 me-3" ref="exitArea3">
             <button type="button" class="btn btn-success btn-sm ms-2" @click="exit(3)" ref="exitBtn3">離場</button>
             <button type="button" class="btn btn-secondary btn-sm ms-2" @click="exitReset(3)">重置</button>
           </div>
@@ -114,11 +113,10 @@
         <span class="progress-color-3" ref="progress-6"></span>
         <h2 class="h1 mb-3">第三隻王</h2>
         <!-- 離場按鈕 -->
-        <div class="d-none position-absolute top-0 end-0 mt-4" ref="exitArea6">
-            <input type="text" class="w-25 mt-auto" v-model="exeitTime">
-            <button type="button" class="btn btn-success btn-sm ms-2" @click="exit(6)" ref="exitBtn6">離場</button>
-            <button type="button" class="btn btn-secondary btn-sm ms-2" @click="exitReset(6)">重置</button>
-          </div>
+        <div class="d-none position-absolute top-0 end-0 mt-4 me-3" ref="exitArea6">
+          <button type="button" class="btn btn-success btn-sm ms-2" @click="exit(6)" ref="exitBtn6">離場</button>
+          <button type="button" class="btn btn-secondary btn-sm ms-2" @click="exitReset(6)">重置</button>
+        </div>
         <div class="d-flex align-items-center justify-content-center">
           <h3 class="fs-time bg-gray select-none mb-0 me-3 p-2">{{ showTime['6']?showTime['6']:' 2 分 40 秒 '  }}</h3>
           <button type="button" class="btn btn-danger p-lg me-3" @click="MVP(6)" :disabled="time['6']<160000">開始</button>
@@ -194,8 +192,7 @@ export default {
         4: '四',
         5: '五',
         6: '六'
-      },
-      exeitTime: JSON.parse(localStorage.getItem('exitTime')) || ''
+      }
     }
   },
 
@@ -349,13 +346,10 @@ export default {
     },
     //* 離場
     exit (count) {
-      //* 把離場時間存到 localStorage
-      localStorage.setItem('exitTime', JSON.stringify(this.exeitTime))
-
       //* 按鈕 Disabled 防止多次點擊
       this.$refs[`exitBtn${count}`].setAttribute('disabled', true)
 
-      this.time[count] = this.exeitTime
+      this.time[count] = 90000
       //* 顯示 分/秒 計算
       const min = parseInt(this.time[count] / 1000 / 60 % 60)
       const sec = parseInt(this.time[count] / 1000 % 60)
@@ -368,7 +362,7 @@ export default {
         this.computed(count, 'backTime')
 
         //* 進度條
-        const time = this.exeitTime
+        const time = 90000
 
         this.$refs[`progress-${count}`].style.width = `${100 - Math.ceil(this.time[count] / time * 100)}%`
 
@@ -384,7 +378,7 @@ export default {
     },
     //* 離場重置
     exitReset (count) {
-      this.time[count] = this.exeitTime
+      this.time[count] = 90000
       //* 顯示 分/秒 計算
       const min = parseInt(this.time[count] / 1000 / 60 % 60)
       const sec = parseInt(this.time[count] / 1000 % 60)
@@ -392,7 +386,7 @@ export default {
       this.showTime[count] = ` ${min} 分 ${sec} 秒`
 
       //* 進度條
-      const time = this.exeitTime
+      const time = 90000
       this.$refs[`progress-${count}`].style.width = `${100 - Math.ceil(this.time[count] / time * 100)}%`
 
       //* 移除出場按鈕 Disabled
