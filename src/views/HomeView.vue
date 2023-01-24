@@ -192,7 +192,8 @@ export default {
         4: '四',
         5: '五',
         6: '六'
-      }
+      },
+      today: new Date()
     }
   },
 
@@ -221,7 +222,7 @@ export default {
     getThreeBossPword () {
       let num = null
       const position = []
-      const Today = new Date()
+      const Today = this.today
       const m = Today.getMonth() + 1
       const d = Today.getDate()
       num = ((m + d) * 5).toString('2')
@@ -411,6 +412,10 @@ export default {
       .catch(err => {
         console.log(err)
       })
+
+    setInterval(() => {
+      this.today = new Date()
+    }, 1000)
   }
 }
 </script>
